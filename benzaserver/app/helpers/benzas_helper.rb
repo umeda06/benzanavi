@@ -1,0 +1,2 @@
+module BenzasHelper
+end

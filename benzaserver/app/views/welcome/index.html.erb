@@ -1,0 +1,36 @@
+<script type="text/javascript">
+$(function(){
+  setInterval(function(){
+    $.ajax({
+      type: "GET",
+      url: "/benzas",
+      dataType: "json",
+      success: function(obj){
+        var tr1 = ""
+        var tr2 = ""
+        for(var benzaname in obj){
+          tr2 += `<td>${benzaname}</td>`
+          if(obj[benzaname] === "0"){
+            tr1 += '<td><img src="<%= asset_path "toilet_off.png" %>" /></td>'
+          } else if(obj[benzaname] === "1"){
+            tr1 += '<td><img src="<%= asset_path "toilet_on.png" %>" /></td>'
+          } else{
+            tr1 += '<td>N/A</td>'
+          }
+        } 
+        $("#tr1").html(tr1);
+        $("#tr2").html(tr2);
+      }
+    });
+  }, 3000);
+});
+</script>
+
+<h1>BenzaNavi</h1>
+<table>
+  <tr id="tr1" />
+  <tr id="tr2" />
+</table>
+<footer>
+  <p><small>&copy; Hitachi, Ltd. 2017. All rights reserved.</small></p>
+</footer>
